@@ -5,7 +5,8 @@ Minecraft Server Plugin that seeks to create groups of players that only exist f
 Inspiration is taken from this forum post:
 https://bukkit.org/threads/iclans-dead-simple-factions-simpleclans-alternative.248688/
 
-All commands start with /vc
+Main command /vanityclans
+Alias /vc
 
 ex.
 
