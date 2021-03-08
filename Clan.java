@@ -35,7 +35,7 @@ import //paper
     }
     
     
-    public boolean sendInvitation(player){                                            //sends an invitation to the requested player, needs timer to be implemented so you cant say yes or no after a long time
+    private boolean sendInvitation(player){                                            //sends an invitation to the requested player, needs timer to be implemented so you cant say yes or no after a long time
       
       /*send message to player*/ (leader + " is asking you to join their clan called " + clan_name + ". /vcyes or /vcno ?")
       
