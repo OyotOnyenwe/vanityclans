@@ -1,0 +1,12 @@
+digraph "com.onyenwe.vanityclans:vanityclans:jar:0.0.1" { 
+	"com.onyenwe.vanityclans:vanityclans:jar:0.0.1" -> "org.spigotmc:spigot-api:jar:1.12.2-R0.1-SNAPSHOT:provided" ; 
+	"com.onyenwe.vanityclans:vanityclans:jar:0.0.1" -> "org.bukkit:bukkit:jar:1.15.2-R0.1-SNAPSHOT:compile" ; 
+	"org.spigotmc:spigot-api:jar:1.12.2-R0.1-SNAPSHOT:provided" -> "commons-lang:commons-lang:jar:2.6:compile" ; 
+	"org.spigotmc:spigot-api:jar:1.12.2-R0.1-SNAPSHOT:provided" -> "com.googlecode.json-simple:json-simple:jar:1.1.1:provided" ; 
+	"org.spigotmc:spigot-api:jar:1.12.2-R0.1-SNAPSHOT:provided" -> "com.google.guava:guava:jar:21.0:compile" ; 
+	"org.spigotmc:spigot-api:jar:1.12.2-R0.1-SNAPSHOT:provided" -> "com.google.code.gson:gson:jar:2.8.0:compile" ; 
+	"org.spigotmc:spigot-api:jar:1.12.2-R0.1-SNAPSHOT:provided" -> "org.yaml:snakeyaml:jar:1.19:compile" ; 
+	"org.spigotmc:spigot-api:jar:1.12.2-R0.1-SNAPSHOT:provided" -> "net.md-5:bungeecord-chat:jar:1.12-SNAPSHOT:provided" ; 
+	"com.googlecode.json-simple:json-simple:jar:1.1.1:provided" -> "junit:junit:jar:4.10:provided" ; 
+	"junit:junit:jar:4.10:provided" -> "org.hamcrest:hamcrest-core:jar:1.1:provided" ; 
+ } 
