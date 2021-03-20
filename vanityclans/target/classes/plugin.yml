@@ -1,3 +1,19 @@
 main: com.onyenwe.vanityclans.App
 name: VanityClans
 version: 0.0.1
+load: POSTWORLD
+authors: [pierrerobspierre, Oyot]
+website: dev.onyenwe.com
+prefix: VanityClans
+commands:
+  vanityclans:
+    description: Main VanityClans command.
+    aliases: vc
+    usage: "Usage: /vc create"
+permissions:
+  vanityclans.create:
+    description: Allows creation of a clan.
+    default: true
+  vanityclans.reload:
+    description: Allows the user to reload the plugin's config.
+    default: op
