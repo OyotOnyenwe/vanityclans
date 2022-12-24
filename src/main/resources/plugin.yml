@@ -1,0 +1,9 @@
+main: de.mullun.VanityClans.main.Main
+name: VanityClans
+version: 1.0.1
+api-version: 1.17
+author: mullun
+commands:
+  vanityclans:
+    description: Offers a variety of commands about clans
+    aliases: [vc]
