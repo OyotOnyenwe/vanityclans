@@ -50,3 +50,9 @@ Alias: **/vc**
 
 /vanityclans dissolve
 - Delete your current clan
+
+# Contributing
+
+I am not actively developing the plugin and neither is the original author. Any help is welcomed in the form of issues/pull requests.
+
+I will try my best to get the plugin working on new Minecraft versions as quickly as possible.
