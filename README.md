@@ -11,6 +11,7 @@ https://bukkit.org/threads/iclans-dead-simple-factions-simpleclans-alternative.2
 
 # Commands
 Main command: **/vanityclans**
+
 Alias: **/vc**
 
 /vc help  
