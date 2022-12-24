@@ -14,6 +14,10 @@ Main command: **/vanityclans**
 
 Alias: **/vc**
 
+
+__Commands List:__
+
+
 /vc help  
 - shows all commands with a brief explaination  
 
