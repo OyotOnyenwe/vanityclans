@@ -10,8 +10,8 @@ Inspiration is taken from this forum post:
 https://bukkit.org/threads/iclans-dead-simple-factions-simpleclans-alternative.248688/
 
 # Commands
-Main command: /vanityclans
-Alias: /vc
+Main command: **/vanityclans**
+Alias: **/vc**
 
 /vc help  
 - shows all commands with a brief explaination  
