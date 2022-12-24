@@ -1,6 +1,6 @@
 # VanityClans
 
-** This plugin was not made by me, it was coded by [davidmuehlan](https://www.fiverr.com/davidmuehlan) on Fiverr!**
+**This plugin was not made by me, it was coded by [davidmuehlan](https://www.fiverr.com/davidmuehlan) on Fiverr!**
 
 Minecraft Server Plugin that seeks to create groups of players that only exist for the sake of vanity, and do not effect land protection, pvp, etc.
 
