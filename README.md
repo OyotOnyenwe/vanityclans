@@ -33,6 +33,9 @@ Alias: **/vc**
 /vc members \<clan name>
 - Shows all members of \<clan name> and will highlight the leader
 
+/vc list
+- Shows all clans and their members, highlights the leader of each
+
 /vc kick \<member name>
 - Kicks \<member> from the clan
 - Only available to leader
@@ -50,6 +53,9 @@ Alias: **/vc**
 
 /vc dissolve
 - Delete your current clan
+
+/vc reload
+- Reloads the plugin's config
 
 # Contributing
 
