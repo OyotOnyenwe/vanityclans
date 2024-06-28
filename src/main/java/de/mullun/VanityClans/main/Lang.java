@@ -13,18 +13,18 @@ public class Lang {
 	public static String T;
 	
 	public Lang(String p, String c, String h, String t) {
-		P = p.replace("&", "§");
-		C = c.replace("&", "§");
-		H = h.replace("&", "§");
-		T = t.replace("&", "§");
+		P = p.replace("&", "Â§");
+		C = c.replace("&", "Â§");
+		H = h.replace("&", "Â§");
+		T = t.replace("&", "Â§");
 		Main.PREFIX += T;
 	}
 	
 	public static void sendClickableCommand(Player player, String message, String targetName) {
         // Make a new component (Bungee API).
 		TextComponent messageC = new TextComponent(TextComponent.fromLegacyText(message + " "));
-        TextComponent accept = new TextComponent(TextComponent.fromLegacyText("§7[§aaccept§7]"));
-        TextComponent decline = new TextComponent(TextComponent.fromLegacyText("§7[§cdecline§7]"));
+        TextComponent accept = new TextComponent(TextComponent.fromLegacyText("Â§7[Â§aacceptÂ§7]"));
+        TextComponent decline = new TextComponent(TextComponent.fromLegacyText("Â§7[Â§cdeclineÂ§7]"));
         // Add a click event to the component.
         accept.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/vc inbox " + targetName + " accept"));
         decline.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/vc inbox " + targetName + " deny"));

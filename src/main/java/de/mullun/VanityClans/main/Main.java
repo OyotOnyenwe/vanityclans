@@ -1,25 +1,38 @@
 package de.mullun.VanityClans.main;
 
+import java.io.File;
+
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import de.mullun.VanityClans.clans.ClanManager;
 import de.mullun.VanityClans.commands.ClanCommand;
+import de.mullun.VanityClans.commands.PermissionHandler;
 
 public class Main extends JavaPlugin implements Listener {
 
-	public static String PREFIX = "§7[§8VanityClans§7] ";
+	public static String PREFIX = "Â§7[Â§8VanityClansÂ§7] ";
 	public static Main main;
 	public static int maxLength;
 	public static boolean allowColors;
+	
+	public static ClanManager clanManager;
+	public static PermissionHandler permissionHandler;
+	
+	public File clanYMLFile;
+	public FileConfiguration clanYML;
 	
 	@Override
 	public void onEnable() {
 		main = this;
 		
+		saveConfig();
+		
 		configOptions();
-		new ClanManager(getConfig());
+		clanManager = new ClanManager(clanYMLFile, clanYML);
 		
 		Bukkit.getPluginManager().registerEvents(this, this);
 		
@@ -34,12 +47,40 @@ public class Main extends JavaPlugin implements Listener {
 		getLogger().info("----========== Plugin disabled ==========----");
 	}
 	
-	private void configOptions() {
+	public void configOptions() {
+		reloadConfig();
+		
+		clanYMLFile = new File(getDataFolder(), "clans.yml");
+		
+		if (!clanYMLFile.exists()) {
+			try {
+				clanYMLFile.createNewFile();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		clanYML = YamlConfiguration.loadConfiguration(clanYMLFile);
+		
+		File permissionFile = new File(getDataFolder(), "permissions.yml");
+		
+		if (!permissionFile.exists()) {
+			try {
+				permissionFile.createNewFile();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		FileConfiguration permissionConfig = YamlConfiguration.loadConfiguration(permissionFile);
+		
+		permissionHandler = new PermissionHandler(permissionConfig, permissionFile);
+		
 		if(!getConfig().contains("settings.prefix")) {
 			getConfig().set("settings.prefix", "&7[&8VanityClans&7] ");
 			saveConfig();
 		}
-		PREFIX = getConfig().getString("settings.prefix").replace("&", "§");
+		PREFIX = getConfig().getString("settings.prefix").replace("&", "Â§");
 		if(!getConfig().contains("settings.maxClanNameLength")) {
 			getConfig().set("settings.maxClanNameLength", 15);
 			saveConfig();
@@ -72,6 +113,14 @@ public class Main extends JavaPlugin implements Listener {
 			saveConfig();
 		}
 		allowColors = getConfig().getBoolean("settings.allowColorCodes");
+	}
+	
+	public static ClanManager getClanManager() {
+		return clanManager;
+	}
+	
+	public static PermissionHandler getPermissionHandler() {
+		return permissionHandler;
 	}
 	
 }

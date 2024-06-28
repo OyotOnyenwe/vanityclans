@@ -1,25 +1,27 @@
 package de.mullun.VanityClans.clans;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.scoreboard.Team;
 
-import de.mullun.VanityClans.main.Main;
-
 public class ClanManager {
 	
-	public static List<Clan> clanList;
+	public List<Clan> clanList;
 	
-	public static FileConfiguration config;
+	private FileConfiguration config;
+	public File file;
 	
-	public ClanManager(FileConfiguration configg) {
-		config = configg;
+	public ClanManager(File file, FileConfiguration config) {
+		this.config = config;
+		this.file = file;
 		clanList = getClans();
 	}
 	
-	public static void deleteClan(Clan clan) {
+	public void deleteClan(Clan clan) {
 		Team t = clan.getTeam();
 		for(String s : config.getConfigurationSection("clans").getKeys(false))
 			if(config.getString("clans." + s + ".name").equals(t.getName()))
@@ -28,20 +30,25 @@ public class ClanManager {
 			t.removeEntry(s);
 		}
 		t.unregister();
-		Main.main.saveConfig();
+		saveConfig();
 		clanList.remove(clan);
+	}
+	
+	public void addClan(String name, UUID owner) {
+		Clan newClan = new Clan(config, file, UUID.randomUUID().toString(), name, owner);
+		clanList.add(newClan);
 	}
 	
 	public List<Clan> getClans() {
 		List<Clan> result = new ArrayList<Clan>();
 		if(!config.contains("clans")) return result;
 		for(String s : config.getConfigurationSection("clans").getKeys(false)) {
-			result.add(new Clan(config, s));
+			result.add(new Clan(config, file, s));
 		}
 		return result;
 	}
 	
-	public static Clan getClan(String name) {
+	public Clan getClan(String name) {
 		for(Clan c : clanList) {
 			if(removeColorCodes(c.getName()).equals(removeColorCodes(name)))
 				return c;
@@ -49,7 +56,7 @@ public class ClanManager {
 		return null;
 	}
 	
-	public static Clan getClanOf(String name) {
+	public Clan getClanOf(String name) {
 		for(Clan c : clanList) {
 			if(c.getTeam().hasEntry(name))
 				return c;
@@ -57,19 +64,27 @@ public class ClanManager {
 		return null;
 	}
 	
-	public static String removeColorCodes(String s) {
+	public void saveConfig() {
+		try {
+			config.save(file);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public String removeColorCodes(String s) {
 		boolean delete = false;
 		String result = "";
 		for(int i = 0; i<s.length(); i++) {
 			if(!delete) {
-				if(s.charAt(i)=='ง'||s.charAt(i)=='&') {
+				if(s.charAt(i)=='ยง'||s.charAt(i)=='&') {
 					delete = true;
 				} else {
 					result += s.charAt(i);
 				}
 			} else {
 				delete = false;
-				if(s.charAt(i)=='ง'||s.charAt(i)=='&')
+				if(s.charAt(i)=='ยง'||s.charAt(i)=='&')
 					delete = true;
 			}
 		}

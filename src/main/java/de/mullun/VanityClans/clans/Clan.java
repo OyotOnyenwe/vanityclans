@@ -1,5 +1,6 @@
 package de.mullun.VanityClans.clans;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -20,20 +21,26 @@ public class Clan {
 	public UUID owner;
 	public List<UUID> requests;
 	public FileConfiguration config;
+	public File file;
 	public String key;
 	
-	public Clan(FileConfiguration config, String key) {
+	public Clan(FileConfiguration config, File file, String key) {
 		this.config = config;
+		this.file = file;
 		this.key = key;
 		readConfig();
 		team = Bukkit.getScoreboardManager().getMainScoreboard().getTeam(name);
+		if(team==null) {
+			Main.main.getLogger().warning("Team " + name + " not found!");		
+		}
 	}
 	
-	public Clan(FileConfiguration config, String key, String name, UUID owner) {
+	public Clan(FileConfiguration config, File file, String key, String name, UUID owner) {
 		this.config = config;
+		this.file = file;
 		this.key = key;
 		if(Main.allowColors)
-			this.name = name.replace("&", "ง");
+			this.name = name.replace("&", "ยง");
 		else
 			this.name = name;
 		this.owner = owner;
@@ -45,7 +52,7 @@ public class Clan {
 			config.set("clans." + key + ".owner", "NONE");
 		config.set("clans." + key + ".requests", new ArrayList<String>());
 		Team tteam = Bukkit.getScoreboardManager().getMainScoreboard().registerNewTeam(this.name);
-		tteam.setPrefix("ง7[" + Lang.C + this.name  + "ง7] ");
+		tteam.setPrefix("ยง7[" + Lang.C + this.name  + "ยง7] ");
 		tteam.setAllowFriendlyFire(true);
 		team = tteam;
 		saveConfig();
@@ -55,7 +62,7 @@ public class Clan {
 		team.addEntry(p.getName());
 		if(owner==null)
 			setOwner(p.getUniqueId());
-		for(Clan c : ClanManager.clanList) {
+		for(Clan c : Main.getClanManager().getClans()) {
 			if(c.getRequests().contains(p.getUniqueId()))
 				c.removeRequest(p.getUniqueId());
 		}
@@ -147,19 +154,19 @@ public class Clan {
 		}
 	}
 	
-	public static String removeColorCodes(String s) {
+	public String removeColorCodes(String s) {
 		boolean delete = false;
 		String result = "";
 		for(int i = 0; i<s.length(); i++) {
 			if(!delete) {
-				if(s.charAt(i)=='ง'||s.charAt(i)=='&') {
+				if(s.charAt(i)=='ยง'||s.charAt(i)=='&') {
 					delete = true;
 				} else {
 					result += s.charAt(i);
 				}
 			} else {
 				delete = false;
-				if(s.charAt(i)=='ง'||s.charAt(i)=='&')
+				if(s.charAt(i)=='ยง'||s.charAt(i)=='&')
 					delete = true;
 			}
 		}
@@ -167,7 +174,11 @@ public class Clan {
 	}
 	
 	private void saveConfig() {
-		Main.main.saveConfig();
+		try {
+			config.save(file);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 }
