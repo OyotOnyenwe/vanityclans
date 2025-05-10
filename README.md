@@ -1,4 +1,4 @@
-**This plugin was not made by me, it was coded by [davidmuehlan](https://www.fiverr.com/davidmuehlan) on Fiverr!**
+**This plugin was my idea, but was coded by [davidmuehlan](https://www.fiverr.com/davidmuehlan) on Fiverr!**
 
 # VanityClans
 
